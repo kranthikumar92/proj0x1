@@ -1,0 +1,12 @@
+version: '1.0'
+
+services:
+  web:
+    image: adminapp  
+    ports:
+      - "80:80"  # Mapping port 80 on the host to port 80 on the container
+    volumes:
+      - /path-to-files/:/var/www/html  # Mapping local directory to the container
+    environment:
+      - APACHE_RUN_USER=www-data
+      - APACHE_RUN_GROUP=www-data
