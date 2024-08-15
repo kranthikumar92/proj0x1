@@ -1,0 +1,14 @@
+docker login
+
+docker tag my-httpd-app:latest yourusername/my-httpd-app:v1.0
+
+docker push yourusername/my-httpd-app:v1.0
+
+----
+
+docker tag my-httpd-app:latest yourusername/my-httpd-app:v1.1
+
+docker push yourusername/my-httpd-app:v1.1
+
+PULL: 
+docker pull yourusername/my-httpd-app:v1.1
