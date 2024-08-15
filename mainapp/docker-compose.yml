@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  web:
+    image: hostel4u-test
+    ports:
+      - "80:80"
+    volumes:
+      - ./html/:/var/www/html/        # Use local machine files as hosting files
+    environment:
+      - DB_HOST=db
+      - DB_NAME=your_database
+      - DB_USER=root
+      - DB_PASSWORD=your_password
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db/test.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - MYSQL_ROOT_PASSWORD=your_password
+      - MYSQL_DATABASE=your_database
+
+volumes:
+  db_data:

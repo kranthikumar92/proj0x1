@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  web:
+    image: adminapp-test  # This is the image that you will build
+    ports:
+      - "80:80"
+    volumes:
+      - ./html:/var/www/html  # Use local machine files from the ./html directory
