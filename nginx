@@ -1,0 +1,88 @@
+# Use the official Nginx image as the base image
+FROM nginx:latest
+
+# Copy files from the host to the Nginx html directory
+COPY /ubuntu/app/myfiles/ /usr/share/nginx/html/
+
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx server
+CMD ["nginx", "-g", "daemon off;"]
+
+cd /path/to/your/dockerfile
+docker build -t my-nginx-app .
+docker run -d -p 80:80 my-nginx-app
+
+------------------------------------------------------
+
+# Use the official Nginx image as the base image
+FROM nginx:latest
+
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx server
+CMD ["nginx", "-g", "daemon off;"]
+
+
+cd /path/to/your/dockerfile
+docker build -t my-nginx-app .
+docker run -d -p 80:80 -v /ubuntu/app/myfiles/:/usr/share/nginx/html/ my-nginx-app
+
+------------------------------------------------------
+
+:::Dockerfile:::
+# Use the official Nginx image as the base image
+FROM nginx:latest
+
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx server
+CMD ["nginx", "-g", "daemon off;"]
+
+:::docker-compose.yml:::
+version: '3'
+services:
+  web:
+    image: my-nginx-app
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - /ubuntu/app/myfiles/:/usr/share/nginx/html/
+
+cd /path/to/your/docker-setup
+docker-compose up --build -d
+
+------------------------------------------------------
+
+# Navigate to the directory containing your Dockerfile
+cd /path/to/your/dockerfile
+
+# Build the Docker image
+docker build -t my-nginx-app .
+
+:::docker-compose.yml:::
+version: '3'
+services:
+  web:
+    image: my-nginx-app
+    ports:
+      - "80:80"
+    volumes:
+      - /ubuntu/app/myfiles/:/usr/share/nginx/html/
+
+# Navigate to the directory containing your docker-compose.yml file
+cd /path/to/your/docker-compose-file
+
+# Start the container using Docker Compose
+docker-compose up -d
+---------
+docker build -t my-nginx-app .
+cd /path/to/your/docker-compose-file
+docker-compose up -d
+
+------------------------------------------------------
+
